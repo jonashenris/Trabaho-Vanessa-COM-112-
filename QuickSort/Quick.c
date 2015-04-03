@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include "Quick.h"
 
 /* funcao de ordenacao pelo metodo quicksort */
 void quicksort(int *vet, int inf, int sup){
@@ -58,16 +59,16 @@ int particao(int *vet, int inf, int sup){
 	return k;		//retorno do indice da chave particionadora
 }
 
-// A utility function to swap two elements
-void swap ( int* a, int* b )
+// Função que troca dois elementos
+void trocar ( int* a, int* b )
 {
     int t = *a;
     *a = *b;
     *b = t;
 }
  
-/* This function is same in both iterative and recursive*/
-int partition (int arr[], int l, int h)
+// Função particiona também ultilizada na versão recursiva
+int particiona (int * arr, int l, int h)
 {
     int x = arr[h];
     int i = (l - 1);
@@ -78,50 +79,48 @@ int partition (int arr[], int l, int h)
         if (arr[j] <= x)
         {
             i++;
-            swap (&arr[i], &arr[j]);
+            trocar (&arr[i], &arr[j]);
         }
     }
-    swap (&arr[i + 1], &arr[h]);
+    trocar (&arr[i + 1], &arr[h]);
     return (i + 1);
 }
  
-/* A[] --> Array to be sorted, l  --> Starting index, h  --> Ending index */
-void quickSortIterative (int * arr, int l, int h)
+// Quick sort iterativo, vetor à ser ordenado, de l à h
+void quickSortIterativo (int * arr, int l, int h)
 {
-    // Create an auxiliary stack
-    int stack[ h - l + 1 ];
+    // Cria uma pilha auxiliar
+    int pilha[ h - l + 1 ];
  
-    // initialize top of stack
+    // Inicializa topo da pilha
     int top = -1;
  
-    // push initial values of l and h to stack
-    stack[ ++top ] = l;
-    stack[ ++top ] = h;
+    // push os valores iniciais de l e h na pilha
+    pilha[ ++top ] = l;
+    pilha[ ++top ] = h;
  
-    // Keep popping from stack while is not empty
+    // Continua dando poping na pilha até ela fica vazia
     while ( top >= 0 )
     {
-        // Pop h and l
-        h = stack[ top-- ];
-        l = stack[ top-- ];
+        // Pop h e l
+        h = pilha[ top-- ];
+        l = pilha[ top-- ];
  
-        // Set pivot element at its correct position in sorted array
-        int p = partition( arr, l, h );
+        // Elemento pivô em sua posição correta em um vetor ordenado
+        int p = particiona( arr, l, h );
  
-        // If there are elements on left side of pivot, then push left
-        // side to stack
+        // Se existem elemento à esquerda do pivô, então push lado esquerdo da pilha
         if ( p-1 > l )
         {
-            stack[ ++top ] = l;
-            stack[ ++top ] = p - 1;
+            pilha[ ++top ] = l;
+            pilha[ ++top ] = p - 1;
         }
  
-        // If there are elements on right side of pivot, then push right
-        // side to stack
+        // Se existem elemento à direita do pivô, então push lado direito da pilha
         if ( p+1 < h )
         {
-            stack[ ++top ] = p + 1;
-            stack[ ++top ] = h;
+            pilha[ ++top ] = p + 1;
+            pilha[ ++top ] = h;
         }
     }
 }

@@ -10,6 +10,9 @@
 
 void quicksort(int *vet, int inf, int sup);
 int particao(int *vet, int inf, int sup);
+void trocar ( int* a, int* b );
+int particiona (int * arr, int l, int h);
+void quickSortIterativo (int * arr, int l, int h);
 
 #endif	/* QUICK_H */
 

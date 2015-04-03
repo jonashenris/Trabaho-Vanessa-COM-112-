@@ -11,6 +11,7 @@
 void preencheArquivo(FILE * arquivo, int semente, int tam);
 int vetorTamanho(char * nome_arq);
 int *gerarVetor(char * nomeArquivo, int semente);
+void gerarRelatorio(char * nomeArquivo, double tempo, int ordenacao, int tam, int semente);
 
 #endif	/* ES_H */
 
