@@ -2,18 +2,18 @@
 #include "Quick.h"
 
 /* funcao de ordenacao pelo metodo quicksort */
-void quicksort(int *vet, int inf, int sup){
+void quicksort(int *vet, int inf, int sup,int * dados){
 	int k;
 	
 	if(sup > inf){
-		k = particao(vet, inf, sup);	//recebendo o indice da chave particionadora
-		quicksort(vet, inf, k-1);		//ordenando dados do conjunto que vai de 0 ate k-1
-		quicksort(vet, k+1, sup);		//ordenando dados do conjunto que vai de k+1 ate tam-1
+		k = particao(vet, inf, sup,dados);	//recebendo o indice da chave particionadora
+		quicksort(vet, inf, k-1,dados);		//ordenando dados do conjunto que vai de 0 ate k-1
+		quicksort(vet, k+1, sup,dados);		//ordenando dados do conjunto que vai de k+1 ate tam-1
 	}
 }
 
 /* funcao que particiona o vetor em conjuntos e retorna o indice da chave particionadora */
-int particao(int *vet, int inf, int sup){
+int particao(int *vet, int inf, int sup,int *dados){
 	//declaracao de variaveis
 	int M;		//recebe a chave particionadora
 	int k;		//indice da chave particionadora
@@ -31,24 +31,30 @@ int particao(int *vet, int inf, int sup){
 	//operacao de particao
 	do{		
 		while(sup > inf && *q >= M){	//partindo do ultimo elemento do vetor e verificando se os valores sao maiores que a chave particionadora
-			sup--;
-			q = sup + vet;
+                    dados[0]++;
+                    sup--;
+                    q = sup + vet;
 		}
+                dados[0]++;
 		k = sup;	//o indice da chave particionadora eh o indice superior do vetor
 		
 		if(sup != inf){	//troca de valores
+                        dados[1]++;
 			aux = *p;
 			*p = *q;
 			*q = aux;
 			
 			while(inf < sup && *p <= M){	//partindo do primeiro elemento do vetor e verificando se os valores sao menores que a chave particionadora
-				inf++;
-				p++; 
+                            dados[0]++;
+                            inf++;
+                            p++; 
 			}
+                        dados[0]++;
 
 			k = inf;	//o indice da chave particionadora eh o indice inferior do vetor
 			
 			if(inf != sup){	//troca de valores
+                                dados[1]++;
 				aux = *p;
 				*p = *q;
 				*q = aux;
@@ -68,7 +74,7 @@ void trocar ( int* a, int* b )
 }
  
 // Função particiona também ultilizada na versão recursiva
-int particiona (int * arr, int l, int h)
+int particiona (int * arr, int l, int h,int * dados)
 {
     int x = arr[h];
     int i = (l - 1);
@@ -76,18 +82,21 @@ int particiona (int * arr, int l, int h)
     int j;
     for (j = l; j <= h- 1; j++)
     {
+        dados[0]++;
         if (arr[j] <= x)
         {
             i++;
             trocar (&arr[i], &arr[j]);
+            dados[1]++;
         }
     }
     trocar (&arr[i + 1], &arr[h]);
+    dados[1]++;
     return (i + 1);
 }
  
 // Quick sort iterativo, vetor à ser ordenado, de l à h
-void quickSortIterativo (int * arr, int l, int h)
+void quickSortIterativo (int * arr, int l, int h,int * dados)
 {
     // Cria uma pilha auxiliar
     int pilha[ h - l + 1 ];
@@ -107,7 +116,7 @@ void quickSortIterativo (int * arr, int l, int h)
         l = pilha[ top-- ];
  
         // Elemento pivô em sua posição correta em um vetor ordenado
-        int p = particiona( arr, l, h );
+        int p = particiona( arr, l, h , dados);
  
         // Se existem elemento à esquerda do pivô, então push lado esquerdo da pilha
         if ( p-1 > l )

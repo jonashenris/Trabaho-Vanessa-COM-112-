@@ -68,7 +68,7 @@ int *gerarVetor(char * nomeArquivo, int semente){
 }
 
 // Gera relatório final
-void gerarRelatorio(char * nomeArquivo, double tempo, int ordenacao, int tam, int semente){
+void gerarRelatorio(char * nomeArquivo, double tempo, int * dados, int ordenacao, int tam, int semente){
     FILE * arquivo = fopen(nomeArquivo,"w+");
     if(ordenacao==1){
         fprintf(arquivo,"Método de ordenação: QuickSort\n");
@@ -82,5 +82,7 @@ void gerarRelatorio(char * nomeArquivo, double tempo, int ordenacao, int tam, in
         printf("Erro ao escrever resultado no arquivo de saída\n");
         return;
     }
+    fprintf(arquivo,"Número de comparações: %d\n",dados[0]);
+    fprintf(arquivo,"Número de trocas: %d\n",dados[1]);
     return;
 }

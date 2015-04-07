@@ -8,11 +8,11 @@
 #ifndef QUICK_H
 #define	QUICK_H
 
-void quicksort(int *vet, int inf, int sup);
-int particao(int *vet, int inf, int sup);
+void quicksort(int *vet, int inf, int sup,int * dados);
+int particao(int *vet, int inf, int sup,int * dados);
 void trocar ( int* a, int* b );
-int particiona (int * arr, int l, int h);
-void quickSortIterativo (int * arr, int l, int h);
+int particiona (int * arr, int l, int h, int * dados);
+void quickSortIterativo (int * arr, int l, int h, int * dados);
 
 #endif	/* QUICK_H */
 

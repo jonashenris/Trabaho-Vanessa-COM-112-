@@ -13,8 +13,6 @@
         <gdb_interceptlist>
           <gdbinterceptoptions gdb_all="false" gdb_unhandled="true" gdb_unexpected="true"/>
         </gdb_interceptlist>
-        <gdb_signals>
-        </gdb_signals>
         <gdb_options>
           <DebugOptions>
           </DebugOptions>
@@ -26,12 +24,20 @@
       </nativedebugger>
       <runprofile version="9">
         <runcommandpicklist>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" 1 10 entrada saida</runcommandpicklistitem>
+          <runcommandpicklistitem>"1 10 entrada.txt saida.txt"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH} 1 10 entrada.txt saida.txt"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"1 10 entrada.txt saida.txt</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" 1 10 entrada.txt</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" 1 10 entrada.txt saida.txt</runcommandpicklistitem>
           <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" 1 123 entrada.txt saida.txt</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>"${OUTPUT_PATH}"</runcommand>
-        <rundir></rundir>
+        <runcommand>"${OUTPUT_PATH}" 1 123 entrada.txt saida.txt</runcommand>
+        <rundir>/home/vitorpio/Informática/UNIFEI/Período 3/Algoritmo e Estrutura de Dados II/Trabalho 1/projeto_git/QuickSort/.</rundir>
         <buildfirst>true</buildfirst>
-        <terminal-type>0</terminal-type>
+        <console-type>1</console-type>
+        <terminal-type>2</terminal-type>
         <remove-instrumentation>0</remove-instrumentation>
         <environment>
         </environment>
