@@ -1,0 +1,6 @@
+Método de ordenação: QuickSort iterativo
+Tamanho do vetor: 500000
+Semente: 496
+Tempo de ordenação: 0.113990
+Número de comparações: 11611984
+Número de trocas: 6171980
